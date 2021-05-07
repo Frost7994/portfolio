@@ -1,7 +1,24 @@
+// Sections
+import {
+    About,
+    Banner,
+    Contact,
+    Hero,
+    Projects,
+    Skills,
+    Testimonials,
+} from "sections";
+
 export default function Home() {
     return (
-        <div>
-            <p>Hello World</p>
-        </div>
+        <>
+            <Hero />
+            <Skills />
+            <About />
+            <Testimonials />
+            <Projects />
+            <Banner />
+            <Contact />
+        </>
     );
 }
