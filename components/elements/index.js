@@ -7,5 +7,8 @@ import Tag from "./Tag";
 import Title from "./Title";
 import Text from "./Text";
 
+import Overlay from "./Overlay";
+
 export { Page, Section, Container, Grid };
 export { Tag, Title, Text };
+export { Overlay };

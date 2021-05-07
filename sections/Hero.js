@@ -1,7 +1,7 @@
 import React from "react";
 
 const Hero = () => {
-    return <></>;
+    return <>hey</>;
 };
 
 export default Hero;
