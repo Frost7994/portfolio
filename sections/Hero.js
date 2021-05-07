@@ -1,18 +1,11 @@
 import { withTheme } from "styled-components";
 
-import { Section, Container, Grid, GridItem } from "components/elements";
+import { Section, Container, Grid, GridItem, Box } from "components/elements";
 import { Skill, Timeline } from "components/compounds";
 
 // Component
-const Hero = ({ theme }) => {
-    const skills = [
-        { tag: "Photoshop", percentage: "50%" },
-        { tag: "Photoshop", percentage: "50%" },
-        { tag: "Photoshop", percentage: "50%" },
-        { tag: "Photoshop", percentage: "50%" },
-        { tag: "Photoshop", percentage: "50%" },
-        { tag: "Photoshop", percentage: "50%" },
-    ];
+const Hero = ({ theme, data }) => {
+    const { title, text, skills } = data;
 
     return (
         <>
@@ -21,17 +14,12 @@ const Hero = ({ theme }) => {
                     <Grid>
                         <GridItem>
                             <div>
-                                <h1>
-                                    A title that will include something soon...
-                                </h1>
+                                <h1>{title}</h1>
                                 <div style={{ display: "flex" }}>
                                     <Timeline />
                                     <div>
                                         <p style={{ marginBottom: "1rem" }}>
-                                            dsn d dsk dc mdsjk ds dsj dsncev
-                                            kiefcv ejk lkewc kjewcknewc ewlwq;
-                                            fevopren eie weo w dw;l sdkds oeo
-                                            djdds kjds ww , dpoew kjew d.
+                                            {text}
                                         </p>
                                         <div
                                             style={{

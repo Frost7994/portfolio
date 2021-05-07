@@ -11,8 +11,9 @@ import Title from "./Title";
 import Text from "./Text";
 
 import Overlay from "./Overlay";
+import Box from "./Box";
 
 export { Page, Section, Container, Grid, GridItem };
 export { Modal };
 export { Tag, Title, Text };
-export { Overlay };
+export { Overlay, Box };

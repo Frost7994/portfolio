@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import css from "@styled-system/css";
+import { motion } from "framer-motion";
 
 const BarContainer = styled("div")(({ theme }) =>
     css({
@@ -13,21 +14,40 @@ const BarContainer = styled("div")(({ theme }) =>
     })
 );
 
-const Bar = styled("div")(({ percentage, theme }) =>
+const Bar = styled(motion.div)(({ theme }) =>
     css({
         height: "100%",
-        width: percentage,
         borderRadius: "0.2rem",
         backgroundColor: theme.textColor.primary,
     })
 );
 
 const Skill = ({ tag, percentage }) => {
+    const growVariant = {
+        invisible: {
+            width: 0,
+        },
+        visible: (custom) => ({
+            width: custom,
+            transition: {
+                delay: 0.5,
+                type: "spring",
+                bounce: "0.3",
+            },
+        }),
+    };
+
     return (
         <div>
             <p>{tag}</p>
             <BarContainer>
-                <Bar percentage={percentage} />
+                <Bar
+                    custom={percentage}
+                    variants={growVariant}
+                    initial="invisible"
+                    animate="visible"
+                    exit="invisible"
+                />
             </BarContainer>
         </div>
     );
