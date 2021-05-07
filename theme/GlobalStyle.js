@@ -12,8 +12,6 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     background: ${({ theme }) => theme.backgroundColor.secondary};
-    background-image:${({ theme }) =>
-        `linear-gradient(to bottom right, ${theme.backgroundColor.secondary}, ${theme.backgroundColor.gradient})`};
     color: ${({ theme }) => theme.textColor.primary};
     transition: all 0.2s ease
 }

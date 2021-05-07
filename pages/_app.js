@@ -1,5 +1,7 @@
 import ThemeProvider from "theme";
 import GlobalStyle from "theme/GlobalStyle";
+import ColorProvider from "context/ColorContext";
+
 import Head from "next/head";
 
 import { Layout } from "components/compounds";
@@ -15,10 +17,12 @@ function MyApp({ Component, pageProps }) {
                 />
             </Head>
             <ThemeProvider>
-                <GlobalStyle />
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                <ColorProvider>
+                    <GlobalStyle />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </ColorProvider>
             </ThemeProvider>
         </>
     );
