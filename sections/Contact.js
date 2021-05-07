@@ -1,7 +1,7 @@
 import React from "react";
 
-const Hero = () => {
+const Contact = () => {
     return <></>;
 };
 
-export default Hero;
+export default Contact;

@@ -1,7 +1,7 @@
 import React from "react";
 
-const Hero = () => {
+const Skills = () => {
     return <></>;
 };
 
-export default Hero;
+export default Skills;
