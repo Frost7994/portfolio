@@ -29,8 +29,10 @@ export default class MyDocument extends Document {
     }
     render() {
         return (
-            <Html>
-                <Head />
+            <Html lang="en">
+                <Head>
+                    <link rel="shortcut icon" href="/logo.svg" />
+                </Head>
                 <body>
                     <Main />
                     <div id="portal" />
