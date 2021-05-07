@@ -94,8 +94,8 @@ export const darkTheme = {
         hover: "#1A1D23",
     },
     backgroundColor: {
-        primary: "#3E4551",
-        secondary: "#23272f",
+        primary: "#23272f",
+        secondary: "#3E4551",
         tertiary: "#596273",
         gradient: "#111317",
     },

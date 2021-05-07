@@ -20,6 +20,8 @@ import {
 // Sub Components
 const Wrapper = styled("div")(
     css({
+        position: "fixed",
+        top: "0",
         height: "5rem",
         width: "100%",
     })
@@ -229,13 +231,15 @@ const Navbar = () => {
                         </Nav>
                         <ThemeButton
                             onClick={themeClick}
-                            primaryColor={primaryColor}>
+                            primaryColor={primaryColor}
+                            aria-label="theme toggler">
                             <Paintbrush style={{ marginRight: "0.2rem" }} />
                             Theme
                         </ThemeButton>
                         <MobileButton
                             onClick={toggleOpen}
-                            primaryColor={primaryColor}>
+                            primaryColor={primaryColor}
+                            aria-label="open mobile">
                             {open ? <Close /> : <Open />}
                         </MobileButton>
                     </WrapperInner>

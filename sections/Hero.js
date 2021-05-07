@@ -1,7 +1,11 @@
 import React from "react";
 
 const Hero = () => {
-    return <>hey</>;
+    return (
+        <>
+            <div style={{ height: "1200px" }}>hey</div>
+        </>
+    );
 };
 
 export default Hero;
