@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { OpenContext } from "context/OpenContext";
 
 import { Page, Overlay, Modal } from "components/elements";
-import { Navbar, Socialbar } from "components/compounds";
+import { Navbar, Socialbar, ColorPicker } from "components/compounds";
 
 const Layout = ({ children }) => {
     const { open, toggleOpen, colorOpen, toggleColorOpen } = useContext(
@@ -15,7 +15,8 @@ const Layout = ({ children }) => {
                 selector="portal"
                 open={colorOpen}
                 toggleOpen={toggleColorOpen}>
-                <p>This is modal content</p>
+                {/* <p>This is modal content</p> */}
+                <ColorPicker />
             </Modal>
             <Navbar />
             {open && <Overlay toggleOpen={toggleOpen} />}
