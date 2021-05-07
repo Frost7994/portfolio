@@ -159,11 +159,12 @@ const MobileInner = styled(motion.div)(
 // Component
 const Navbar = () => {
     const { primaryColor } = useContext(ColorContext);
-    const { open, toggleOpen } = useContext(OpenContext);
+    const { open, toggleOpen, toggleColorOpen } = useContext(OpenContext);
 
     // Theme Selector
     const themeClick = () => {
         console.log("clicked");
+        toggleColorOpen();
     };
 
     // Get window
