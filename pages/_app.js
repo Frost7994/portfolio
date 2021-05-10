@@ -3,6 +3,8 @@ import GlobalStyle from "theme/GlobalStyle";
 
 import Head from "next/head";
 
+import { Layout } from "components/compounds";
+
 function MyApp({ Component, pageProps }) {
     return (
         <>
@@ -15,7 +17,9 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <ThemeProvider>
                 <GlobalStyle />
-                <Component {...pageProps} />
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
             </ThemeProvider>
         </>
     );

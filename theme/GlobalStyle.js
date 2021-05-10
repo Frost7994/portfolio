@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-    background: ${({ theme }) => theme.backgroundColor.secondary};
+    background: ${({ theme }) => theme.backgroundColor.primary};
     color: ${({ theme }) => theme.textColor.primary};
     transition: all 0.2s ease
 }
