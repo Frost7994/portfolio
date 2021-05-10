@@ -1,11 +1,7 @@
 import ThemeProvider from "theme";
 import GlobalStyle from "theme/GlobalStyle";
-import ColorProvider from "context/ColorContext";
-import OpenProvider from "context/OpenContext";
 
 import Head from "next/head";
-
-import { Layout } from "components/compounds";
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -18,14 +14,8 @@ function MyApp({ Component, pageProps }) {
                 />
             </Head>
             <ThemeProvider>
-                <ColorProvider>
-                    <OpenProvider>
-                        <GlobalStyle />
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </OpenProvider>
-                </ColorProvider>
+                <GlobalStyle />
+                <Component {...pageProps} />
             </ThemeProvider>
         </>
     );
