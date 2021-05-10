@@ -12,6 +12,7 @@ const Wrapper = styled("div")(
         width: "100%",
         display: "flex",
         alignItems: "center",
+        position: "fixed",
     })
 );
 
