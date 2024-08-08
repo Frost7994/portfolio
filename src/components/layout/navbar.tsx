@@ -23,12 +23,12 @@ export const Navbar = () => {
         backgroundColor: useMotionTemplate`hsla(var(--background)/ ${useTransform(
           scrollYBoundedProgress,
           [0, 1],
-          [1, 0.3],
+          [1, 0.3]
         )})`,
       }}
       className={cn(
-        "fixed z-10 w-full border-b-2 border-grid",
-        "bg-background/80 backdrop-blur-lg",
+        "fixed z-50 w-full border-b-2 border-grid",
+        "bg-background/80 backdrop-blur-lg"
       )}
     >
       <motion.div

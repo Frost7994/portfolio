@@ -11,7 +11,8 @@ import { ListReorderAnimation } from "./listReorderAnimation";
 import { NotificationAnimation } from "./notificationAnimation";
 import { LayoutAnimation } from "./layoutAnimation";
 
-import { HeroTemplate } from "./heroTemplate";
+import { ToggleHeroTemplates } from "./heroTemplates";
+import { ToggleFeatureTemplates } from "./featureTemplates";
 
 export const Components = {
   BlockQuote,
@@ -25,5 +26,6 @@ export const Components = {
   NotificationAnimation,
   LayoutAnimation,
 
-  HeroTemplate,
+  ToggleHeroTemplates,
+  ToggleFeatureTemplates,
 };
