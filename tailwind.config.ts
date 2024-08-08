@@ -17,6 +17,16 @@ const config = {
       screens: {
         xs: "400px",
       },
+      keyframes: {
+        marquee: {
+          to: {
+            transform: "translateX(-50%)",
+          },
+        },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
+      },
     },
   },
   plugins: [require("@tailwindcss/container-queries")],

@@ -1,3 +1,15 @@
+// components
+import { BioCard } from "@/components/sections/showcase/cards/bioCard";
+import { ContactCard } from "@/components/sections/showcase/cards/contactCard";
+import { DecoderCard } from "@/components/sections/showcase/cards/decoderCard";
+import { JourneyCard } from "@/components/sections/showcase/cards/journeyCard";
+import { QuizmedicsCard } from "@/components/sections/showcase/cards/quizmedicsCard";
+import { ReadingCard } from "@/components/sections/showcase/cards/readingCard";
+import { SpotifyCard } from "@/components/sections/showcase/cards/spotifyCard";
+import { SummaraiCard } from "@/components/sections/showcase/cards/summaraiCard";
+import { WatchingCard } from "@/components/sections/showcase/cards/watchingCard";
+import { LinkedinCard } from "@/components/sections/showcase/cards/linkedinCard";
+
 //* - Types
 
 type Card = {
@@ -6,8 +18,7 @@ type Card = {
   subcategory: string;
   row: string;
   col: string;
-  // content: JSX.Element;
-  content: string;
+  content: JSX.Element;
 };
 
 //* - Data
@@ -118,7 +129,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: " row-span-2",
     col: "col-span-2 sm:col-span-4 md:col-span-2 lg:col-span-4",
-    content: "",
+    content: <BioCard />,
   },
   {
     id: "spotify-section",
@@ -126,7 +137,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: " row-span-1 sm:row-span-2 md:row-span-1 lg:row-span-2",
     col: "col-span-1 sm:col-span-2",
-    content: "",
+    content: <SpotifyCard />,
   },
   {
     id: "projects-section",
@@ -134,7 +145,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: " row-span-2 sm:row-span-1 md:row-span-2 lg:row-span-4",
     col: " col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2",
-    content: "",
+    content: <QuizmedicsCard />,
   },
   {
     id: "projects-section-2",
@@ -142,7 +153,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: "row-span-2 sm:row-span-1 md:row-span-2 lg:row-span-4",
     col: " col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2",
-    content: "",
+    content: <SummaraiCard />,
   },
   {
     id: "projects-section-3",
@@ -150,7 +161,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: " row-span-1 md:row-span-2 lg:row-span-2",
     col: "col-span-2 lg:col-span-4",
-    content: "",
+    content: <DecoderCard />,
   },
   {
     id: "watching-section",
@@ -158,7 +169,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: "row-span-1 sm:row-span-2 md:row-span-1 lg:row-span-2",
     col: "col-span-1 sm:col-span-2",
-    content: "",
+    content: <WatchingCard />,
   },
   {
     id: "journey-section-1",
@@ -166,7 +177,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: " row-span-2",
     col: "col-span-2 sm:col-span-2 md:col-span-4 lg:col-span-4",
-    content: "",
+    content: <JourneyCard />,
   },
   {
     id: "reading-section",
@@ -174,7 +185,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: "row-span-1 sm:row-span-2 md:row-span-1 lg:row-span-2",
     col: "col-span-1 sm:col-span-2",
-    content: "",
+    content: <ReadingCard />,
   },
   {
     id: "contact-section",
@@ -182,7 +193,7 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     row: "row-span-1 sm:row-span-2 md:row-span-1 lg:row-span-2",
     col: " col-span-2  sm:col-span-4  lg:col-span-4",
-    content: "",
+    content: <ContactCard />,
   },
   {
     id: "linkedin-section",
@@ -190,6 +201,6 @@ export const CARDS: Card[] = [
     subcategory: "portfolio",
     col: "row-span-1 md:row-span-1 lg:row-span-2",
     row: "col-span-1 sm:col-span-2 lg:col-span-2",
-    content: "",
+    content: <LinkedinCard />,
   },
 ];
