@@ -29,7 +29,10 @@ const config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/container-queries")],
+  plugins: [
+    require("@tailwindcss/container-queries"),
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
 
 export default config;
