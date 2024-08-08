@@ -11,6 +11,8 @@ import { ListReorderAnimation } from "./listReorderAnimation";
 import { NotificationAnimation } from "./notificationAnimation";
 import { LayoutAnimation } from "./layoutAnimation";
 
+import { HeroTemplate } from "./heroTemplate";
+
 export const Components = {
   BlockQuote,
   Decoder,
@@ -22,4 +24,6 @@ export const Components = {
   ListReorderAnimation,
   NotificationAnimation,
   LayoutAnimation,
+
+  HeroTemplate,
 };
