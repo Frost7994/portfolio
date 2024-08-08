@@ -1,14 +1,21 @@
 // components
 import { BioCard } from "@/components/sections/showcase/cards/bioCard";
-import { ContactCard } from "@/components/sections/showcase/cards/contactCard";
-import { DecoderCard } from "@/components/sections/showcase/cards/decoderCard";
 import { JourneyCard } from "@/components/sections/showcase/cards/journeyCard";
-import { QuizmedicsCard } from "@/components/sections/showcase/cards/quizmedicsCard";
+
+import { ContactCard } from "@/components/sections/showcase/cards/contactCard";
+import { LinkedinCard } from "@/components/sections/showcase/cards/linkedinCard";
+
 import { ReadingCard } from "@/components/sections/showcase/cards/readingCard";
 import { SpotifyCard } from "@/components/sections/showcase/cards/spotifyCard";
-import { SummaraiCard } from "@/components/sections/showcase/cards/summaraiCard";
 import { WatchingCard } from "@/components/sections/showcase/cards/watchingCard";
-import { LinkedinCard } from "@/components/sections/showcase/cards/linkedinCard";
+
+import { DecoderCard } from "@/components/sections/showcase/cards/decoderCard";
+import { SummaraiCard } from "@/components/sections/showcase/cards/summaraiCard";
+import { QuizmedicsCard } from "@/components/sections/showcase/cards/quizmedicsCard";
+
+import { ListReorderCard } from "@/components/sections/showcase/cards/listReorderCard";
+import { NotificationCard } from "@/components/sections/showcase/cards/notificationCard";
+import { LayoutCard } from "@/components/sections/showcase/cards/layoutCard";
 
 //* - Types
 
@@ -202,5 +209,29 @@ export const CARDS: Card[] = [
     col: "row-span-1 md:row-span-1 lg:row-span-2",
     row: "col-span-1 sm:col-span-2 lg:col-span-2",
     content: <LinkedinCard />,
+  },
+  {
+    id: "list-reorder-section",
+    category: "components",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <ListReorderCard />,
+  },
+  {
+    id: "notification-section",
+    category: "components",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <NotificationCard />,
+  },
+  {
+    id: "layout-section",
+    category: "components",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <LayoutCard />,
   },
 ];

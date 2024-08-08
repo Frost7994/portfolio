@@ -13,12 +13,14 @@ export const SwitchFilterList = () => {
 
   return (
     <div className="flex items-center justify-end gap-2">
-      {filterType === "portfolio" ? (
-        <p>See the code?</p>
-      ) : (
-        <p>Want to learn about me?</p>
-      )}
+      <p className="text-sm">
+        {filterType === "portfolio"
+          ? "See the code?"
+          : "Want to learn about me? "}
+      </p>
+
       <Switch
+        size="sm"
         checked={filterType === "code"}
         onCheckedChange={(checked) =>
           setFilterType(checked ? "code" : "portfolio")
