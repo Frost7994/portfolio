@@ -128,63 +128,63 @@ export const FeatureTemplateTwo = () => {
   );
 };
 
-// export const FeatureTemplateThree = () => {
-//   return (
-//     <div className="not-prose border rounded-md p-2 bg-gray-100 dark:bg-gray-900">
-//       <div className="overflow-hidden bg-background rounded-md py-24 sm:py-32 px-6 lg:px-8">
-//         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-//           <div className="lg:pr-8 lg:pt-4">
-//             <div className="lg:max-w-lg">
-//               <h2 className="text-base font-semibold leading-7 text-brand">
-//                 Upload smoothly
-//               </h2>
-//               <p className="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-//                 A feature rich system
-//               </p>
-//               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-//                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-//                 Maiores impedit perferendis suscipit eaque, iste dolor
-//                 cupiditate blanditiis ratione.
-//               </p>
-//               <Button className="mt-8 bg-brand hover:bg-brand/90 text-white">
-//                 Get Started
-//               </Button>
-//               <figure className="pl-8 border-l mt-16">
-//                 <blockquote>
-//                   <p className="text-sm sm:text-base text-muted-foreground">
-//                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-//                     Architecto ab quam facilis iste reprehenderit temporibus
-//                     neque, fugiat tempore quaerat quis!"
-//                   </p>
-//                 </blockquote>
-//                 <figcaption className="leading-6 text-xs sm:text-sm flex gap-4 mt-6">
-//                   <Image
-//                     src={ProfileImage}
-//                     alt="profile image"
-//                     width={24}
-//                     height={24}
-//                     className="rounded-full size-6 flex-none"
-//                   />
-//                   <div>
-//                     <span className="font-semibold">Joe Smith</span> - CEO at
-//                     Blue
-//                   </div>
-//                 </figcaption>
-//               </figure>
-//             </div>
-//           </div>
-//           <Image
-//             alt="Product screenshot"
-//             src={DashboardImage}
-//             width={2432}
-//             height={1442}
-//             className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+export const FeatureTemplateThree = () => {
+  return (
+    <div className="not-prose border rounded-md p-2 bg-gray-100 dark:bg-gray-900">
+      <div className="overflow-hidden bg-background rounded-md py-24 sm:py-32 px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base font-semibold leading-7 text-brand">
+                Upload smoothly
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+                A feature rich system
+              </p>
+              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Maiores impedit perferendis suscipit eaque, iste dolor
+                cupiditate blanditiis ratione.
+              </p>
+              <Button className="mt-8 bg-brand hover:bg-brand/90 text-white">
+                Get Started
+              </Button>
+              <figure className="pl-8 border-l mt-16">
+                <blockquote>
+                  <span className="text-sm sm:text-base text-muted-foreground">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Architecto ab quam facilis iste reprehenderit temporibus
+                    neque, fugiat tempore quaerat quis!
+                  </span>
+                </blockquote>
+                <figcaption className="leading-6 text-xs sm:text-sm flex gap-4 mt-6">
+                  <Image
+                    src={ProfileImage}
+                    alt="profile image"
+                    width={24}
+                    height={24}
+                    className="rounded-full size-6 flex-none"
+                  />
+                  <div>
+                    <span className="font-semibold">Joe Smith</span> - CEO at
+                    Blue
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <Image
+            alt="Product screenshot"
+            src={DashboardImage}
+            width={2432}
+            height={1442}
+            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const ToggleFeatureTemplates = () => {
   // data
@@ -202,8 +202,7 @@ export const ToggleFeatureTemplates = () => {
     {
       id: "feature-3",
       label: "Feature 3",
-      // content: <FeatureTemplateThree />,
-      content: <FeatureTemplate />,
+      content: <FeatureTemplateThree />,
     },
   ];
 
