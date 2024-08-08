@@ -1,15 +1,19 @@
 ---
 title: useBoundedScroll
 date: Jan 2023
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vitae libero quod non illum nostrum asperiores aliquam sit facilis nihil.
+description: Utilising a users position on a page while scrolling can allow for some very complex animations. Binding that event to motion values can produce magic!
 author: Tommy Byrne
-tag: Hooks
+tag: Framer Hooks
 stack: [NextJS, TailwindCSS, Framer Motion]
 ---
 
 # Overview
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore cupiditate expedita ducimus quisquam commodi soluta ipsa voluptatem natus omnis, dicta rerum possimus alias impedit id aliquid quibusdam voluptas minima consectetur.
+**Framer motion** has been my library of choice when it comes to animating in NextJS, from the simplistic to the complete abstract. One specific use case I came across and then later discovered on youtube was binding the scroll position of a page to specific animations which produced some very cool effects. I was writing sloppy wet code everywhere and needed a solution to create a reuseable hook that exposed the value I needed for the animations, and voila **useBoundedScroll** came along.
+
+The main idea of this hooks is that it is provided some set of bounds and a reference object if you require, and utilising the bounds values it accepts, it returns a value which can be transformed to prouce any animation you need. The specific use case on this portfolio is the navbar. When a user scrolls 50px downwards it reduces the size and opacity of the navbar and on scrolling up it restores both these properties.
+
+The hook is as follows:
 
 ```jsx
 // state

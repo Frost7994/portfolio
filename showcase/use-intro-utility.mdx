@@ -1,15 +1,46 @@
 ---
 title: useIntro
 date: Jan 2023
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vitae libero quod non illum nostrum asperiores aliquam sit facilis nihil.
+description: Framer motion has never had a simple way of animating a component on page laod and then stopping it for a period of time, until now.
 author: Tommy Byrne
-tag: Hooks
+tag: One time animation
 stack: [NextJS, TailwindCSS, Framer Motion]
 ---
 
 # Overview
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore cupiditate expedita ducimus quisquam commodi soluta ipsa voluptatem natus omnis, dicta rerum possimus alias impedit id aliquid quibusdam voluptas minima consectetur.
+As you may have guessed if you've looked through this portfolio, I love to implement framer motion wherever I can as long as it's appropriate. However, one of the downfalls I found working with it was there was no easy way to animate a component on page load and thats it. Something like the opposite of initial={false} on AnimatePresence, I would love a prop like animateOnce={true}.
+
+Since there is no solution like this as of yet, I created a custom hook to fill the void.
+
+The idea is simple, to track a timestamp using local storage and when it expires, reanimate. The hook exposes a value as a boolean which you can use in your code to animate like so:
+
+```jsx
+// utils
+import { useIntro } from "@/lib/hooks/useIntro";
+import { motion } from "framer-motion";
+
+const Component = () => {
+  const showAnimation = useIntro();
+
+  return (
+    <motion.div
+      initial={{
+        opacity: showAnimation ? 0 : 1,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{
+        opacity: 0,
+      }}
+      className="h-12 w-12 bg-primary rounded-md"
+    />
+  );
+};
+```
+
+The hook is as follows:
 
 ```jsx
 "use client";

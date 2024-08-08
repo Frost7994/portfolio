@@ -1,15 +1,21 @@
 ---
 title: Shadcn Preset
 date: Jan 2023
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vitae libero quod non illum nostrum asperiores aliquam sit facilis nihil.
+description: Skip the hassle of having to set up a new NextJS prok=ject, then implement your base shadcn design system, then change your variables etc etc ..
 author: Tommy Byrne
-tag: Samples
+tag: Tailwind plugin
 stack: [NextJS, TailwindCSS, Framer Motion]
 ---
 
 # Overview
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore cupiditate expedita ducimus quisquam commodi soluta ipsa voluptatem natus omnis, dicta rerum possimus alias impedit id aliquid quibusdam voluptas minima consectetur.
+Starting a new project can be one of the best moments in the project itself. The codebase is clean, everything is simple and makes sense. Usually when getting strated developers have a preference in a styling system whether it be **Styled Components**, **SCSS** or in this case **TailwindCSS**.
+
+Alongside using TailwindCSS I also start off most projects with at least something from **ShadcnUI**, at minimum the beautiful toast component.
+
+Installing Shadcn changes your **globals.css** as well as your **tailwind.config.ts** files, and as the project grows I find that things can get a little bit crowded. This led me to scouring the internet for solutions when I finally stumbled across something I fell in love with and implement to this day, _creating a tailwindcss plugin with all my shadcn styles_.
+
+Below are the changes I make to my app structure so that I can implement a simple tailwind plugin and all my shadcn stuff is in one place. You can check out the files below.
 
 ```jsx
 // file - globals.css
@@ -181,6 +187,8 @@ export const shadcnPlugin = plugin(
 ```
 
 ```jsx
+// file - shadcnPreset.ts
+
 // types
 import type { Config } from "tailwindcss";
 
@@ -193,7 +201,6 @@ export const shadcnPreset = {
   content: [],
   plugins: [animatePlugin, shadcnPlugin],
 } satisfies Config;
-
 ```
 
 ```jsx

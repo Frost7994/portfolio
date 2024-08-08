@@ -23,7 +23,7 @@ const remove = (arr: number[], item: number) => {
   const newArr = [...arr];
   newArr.splice(
     newArr.findIndex((i) => i === item),
-    1,
+    1
   );
   return newArr;
 };
@@ -33,7 +33,7 @@ export const NotificationAnimation = () => {
   const [notifications, setNotifications] = useState([0]);
 
   return (
-    <div className="not-prose rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
+    <div className="mb-4 not-prose rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
       <div className="relative flex h-64 items-end justify-between overflow-hidden rounded-md bg-background p-4">
         <Button
           variant="outline"

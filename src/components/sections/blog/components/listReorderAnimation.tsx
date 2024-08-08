@@ -82,7 +82,7 @@ export const ListReorderAnimation = () => {
   ];
 
   return (
-    <div className="not-prose rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
+    <div className="mb-4 not-prose rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
       <div className="flex flex-col gap-4 rounded-md bg-background p-4">
         {/* filters */}
         <div className="inline-flex h-9 w-full items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground sm:w-fit sm:self-end">

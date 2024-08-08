@@ -1,5 +1,6 @@
 // components
 import { BlockQuote } from "./blockQuote";
+import { BlogLink } from "./blogLink";
 
 import { DisplayCharts } from "./charts";
 import { Cards } from "./cards";
@@ -18,6 +19,8 @@ import { ToggleDashboardTemplates } from "./dashboardTemplate";
 
 export const Components = {
   BlockQuote,
+  BlogLink,
+
   Decoder,
   DisplayCharts,
   Cards,

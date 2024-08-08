@@ -42,7 +42,7 @@ export const LayoutAnimation = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <div className="not-prose rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
+    <div className="not-prose mb-4 rounded-md border bg-gray-100 p-2 dark:bg-gray-900">
       <div className="relative grid grid-cols-3 gap-4 rounded-md bg-background p-4">
         {cards.map((card) => (
           <MotionCard
@@ -65,7 +65,7 @@ export const LayoutAnimation = () => {
           </MotionCard>
         ))}
 
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {selectedId && (
             <motion.div
               initial={{ opacity: 0 }}
