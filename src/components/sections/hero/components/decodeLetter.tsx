@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
 // data
-import { KEYS } from "@/data";
+import { KEYS } from "@/data/indx";
 
 export const DecodeLetter = ({
   letter,
