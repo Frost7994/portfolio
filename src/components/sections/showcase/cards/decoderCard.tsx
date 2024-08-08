@@ -27,7 +27,7 @@ export const DecoderCard = () => {
       </CardHeader>
       <CardFooter className="flex flex-row justify-end">
         <Link
-          href="/showcase/decoder"
+          href="/showcase/projects/decoder"
           className={cn(
             buttonVariants({ variant: "outline" }),
             "inline-flex h-8 gap-2 rounded-md px-3 text-xs",

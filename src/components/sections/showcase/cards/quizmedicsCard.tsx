@@ -28,7 +28,7 @@ export const QuizmedicsCard = () => {
 
       <CardFooter className="flex flex-row sm:justify-end">
         <Link
-          href="/showcase/quizmedics"
+          href="/showcase/projects/quizmedics"
           className={cn(
             buttonVariants({ variant: "outline" }),
             "inline-flex h-8 w-full gap-2 rounded-md px-3 text-xs",

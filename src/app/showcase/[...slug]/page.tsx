@@ -1,6 +1,3 @@
-// types
-import type { Metadata } from "next";
-
 // components
 import { BlogLayout } from "@/components/sections/blog/blogLayout";
 
@@ -51,13 +48,22 @@ const generatePost = async (slug: string) => {
   };
 };
 
-export const metadata: Metadata = {
-  title: "Tommy | Showcase",
-  description: "Tommy Byrne's personal website.",
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string[] };
+}) => {
+  return {
+    title: `Tommy | ${params.slug[0]
+      .split("")[0]
+      .toLocaleUpperCase()}${params.slug[0].slice(1)}`,
+    description: "Tommy Byrne's personal website.",
+  };
 };
 
-const Project = async ({ params }: { params: { slug: string } }) => {
-  const post = await generatePost(params.slug);
+const Project = async ({ params }: { params: { slug: string[] } }) => {
+  const slug = params.slug[params.slug.length - 1];
+  const post = await generatePost(slug);
 
   return <BlogLayout post={post} />;
 };
