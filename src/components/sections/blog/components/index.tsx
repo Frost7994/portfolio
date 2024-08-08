@@ -13,6 +13,7 @@ import { LayoutAnimation } from "./layoutAnimation";
 
 import { ToggleHeroTemplates } from "./heroTemplates";
 import { ToggleFeatureTemplates } from "./featureTemplates";
+import { ToggleActionTemplates } from "./actionTemplates";
 
 export const Components = {
   BlockQuote,
@@ -28,4 +29,5 @@ export const Components = {
 
   ToggleHeroTemplates,
   ToggleFeatureTemplates,
+  ToggleActionTemplates,
 };

@@ -19,6 +19,7 @@ import { LayoutCard } from "@/components/sections/showcase/cards/layoutCard";
 
 import { HeroCard } from "@/components/sections/showcase/cards/heroCard";
 import { FeatureCard } from "@/components/sections/showcase/cards/featureCard";
+import { ActionCard } from "@/components/sections/showcase/cards/actionCard";
 
 //* - Types
 
@@ -252,5 +253,13 @@ export const CARDS: Card[] = [
     col: "row-span-1 md:row-span-1 lg:row-span-2",
     row: "col-span-1 sm:col-span-2 lg:col-span-2",
     content: <FeatureCard />,
+  },
+  {
+    id: "action-section",
+    category: "templates",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <ActionCard />,
   },
 ];
