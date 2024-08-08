@@ -22,6 +22,10 @@ import { FeatureCard } from "@/components/sections/showcase/cards/featureCard";
 import { ActionCard } from "@/components/sections/showcase/cards/actionCard";
 import { DashboardCard } from "@/components/sections/showcase/cards/dashboardCard";
 
+import { UseBoundedScrollCard } from "@/components/sections/showcase/cards/useBoundedScrollCard";
+import { UseIntroCard } from "@/components/sections/showcase/cards/useIntroCard";
+import { PresetCard } from "@/components/sections/showcase/cards/presetCard";
+
 //* - Types
 
 type Card = {
@@ -240,6 +244,14 @@ export const CARDS: Card[] = [
     content: <HeroCard />,
   },
   {
+    id: "use-bounded-scroll-section",
+    category: "utils",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <UseBoundedScrollCard />,
+  },
+  {
     id: "layout-section",
     category: "components",
     subcategory: "code",
@@ -264,11 +276,27 @@ export const CARDS: Card[] = [
     content: <ActionCard />,
   },
   {
+    id: "preset-section",
+    category: "utils",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <PresetCard />,
+  },
+  {
     id: "dashboard-section",
     category: "templates",
     subcategory: "code",
     col: "row-span-1 md:row-span-1 lg:row-span-2",
     row: "col-span-1 sm:col-span-2 lg:col-span-2",
     content: <DashboardCard />,
+  },
+  {
+    id: "use-intro-section",
+    category: "utils",
+    subcategory: "code",
+    col: "row-span-1 md:row-span-1 lg:row-span-2",
+    row: "col-span-1 sm:col-span-2 lg:col-span-2",
+    content: <UseIntroCard />,
   },
 ];
