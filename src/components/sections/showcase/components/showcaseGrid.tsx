@@ -21,12 +21,21 @@ export const ShowcaseGrid = () => {
   // store destructure
   const storeWidth = useWidthStore((state) => state.width);
   const setWidth = useWidthStore((state) => state.setWidth);
-  const filter = useFilterStore((state) => state.filter);
+  const portfolioFilter = useFilterStore((state) => state.portfolioFilter);
+  const codeFilter = useFilterStore((state) => state.codeFilter);
+  const filterType = useFilterStore((state) => state.filterType);
 
-  // filter cards
+  // filter
+  const filter = filterType === "portfolio" ? portfolioFilter : codeFilter;
+
+  // filtered cards
+  const filteredCards = CARDS.filter(
+    (c) => c.subcategory === filter.subcategory
+  );
+
   const cards = [
-    ...CARDS.filter((c) => c.category === filter),
-    ...CARDS.filter((c) => c.category !== filter),
+    ...filteredCards.filter((c) => c.category === filter.category),
+    ...filteredCards.filter((c) => c.category !== filter.category),
   ];
 
   // effects
