@@ -39,52 +39,52 @@ const features = [
   },
 ];
 
-// export const FeatureTemplate = () => {
-//   return (
-//     <div className="not-prose border rounded-md p-2 bg-gray-100 dark:bg-gray-900">
-//       <div className="overflow-hidden bg-background rounded-md py-24 sm:py-32 px-6 lg:px-8">
-//         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-//           <div className="lg:pr-8 lg:pt-4">
-//             <div className="lg:max-w-lg">
-//               <h2 className="text-base font-semibold leading-7 text-brand">
-//                 Deploy faster
-//               </h2>
-//               <p className="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-//                 A better workflow
-//               </p>
-//               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-//                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-//                 Maiores impedit perferendis suscipit eaque, iste dolor
-//                 cupiditate blanditiis ratione.
-//               </p>
-//               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
-//                 {features.map((feature) => (
-//                   <div key={feature.name} className="relative pl-9">
-//                     <dt className="inline font-semibold text-primary">
-//                       <feature.icon
-//                         aria-hidden="true"
-//                         className="absolute left-1 top-1 h-5 w-5 text-brand"
-//                       />
-//                       {feature.name}
-//                     </dt>{" "}
-//                     <dd className="inline">{feature.description}</dd>
-//                   </div>
-//                 ))}
-//               </dl>
-//             </div>
-//           </div>
-//           <Image
-//             src={DashboardImage}
-//             width={2432}
-//             height={1442}
-//             className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-//             alt="Product screenshot"
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+export const FeatureTemplate = () => {
+  return (
+    <div className="not-prose border rounded-md p-2 bg-gray-100 dark:bg-gray-900">
+      <div className="overflow-hidden bg-background rounded-md py-24 sm:py-32 px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base font-semibold leading-7 text-brand">
+                Deploy faster
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+                A better workflow
+              </p>
+              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Maiores impedit perferendis suscipit eaque, iste dolor
+                cupiditate blanditiis ratione.
+              </p>
+              <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
+                {features.map((feature) => (
+                  <div key={feature.name} className="relative pl-9">
+                    <dt className="inline font-semibold text-primary">
+                      <feature.icon
+                        aria-hidden="true"
+                        className="absolute left-1 top-1 h-5 w-5 text-brand"
+                      />
+                      {feature.name}
+                    </dt>{" "}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+          <Image
+            src={DashboardImage}
+            width={2432}
+            height={1442}
+            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+            alt="Product screenshot"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // export const FeatureTemplateTwo = () => {
 //   return (
@@ -186,60 +186,54 @@ const features = [
 //   );
 // };
 
-// export const ToggleFeatureTemplates = () => {
-//   // data
-//   const featureFilters = [
-//     {
-//       id: "feature-1",
-//       label: "Feature 1",
-//       content: <FeatureTemplate />,
-//     },
-//     {
-//       id: "feature-2",
-//       label: "Feature 2",
-//       content: <FeatureTemplateTwo />,
-//     },
-//     {
-//       id: "feature-3",
-//       label: "Feature 3",
-//       content: <FeatureTemplateThree />,
-//     },
-//   ];
-
-//   // state
-//   const [feature, setFeature] = useState("feature-1");
-
-//   return (
-//     <div className="flex flex-col gap-2">
-//       {/* toggles */}
-//       <div className="@container flex justify-end">
-//         <div className="inline-flex h-9 w-fit items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground">
-//           {featureFilters.map((f) => (
-//             <button
-//               key={f.id}
-//               onClick={() => setFeature(f.id)}
-//               className={cn(
-//                 "inline-flex h-full w-full items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-xs font-medium capitalize ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 @[500px]:text-sm",
-//                 "hover:text-primary",
-//                 f.id === feature && "bg-background text-foreground shadow"
-//               )}
-//             >
-//               {f.label}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* content */}
-//       {featureFilters.find((f) => f.id === feature)?.content}
-//     </div>
-//   );
-// };
-
 export const ToggleFeatureTemplates = () => {
+  // data
+  const featureFilters = [
+    {
+      id: "feature-1",
+      label: "Feature 1",
+      content: <FeatureTemplate />,
+    },
+    {
+      id: "feature-2",
+      label: "Feature 2",
+      // content: <FeatureTemplateTwo />,
+      content: <FeatureTemplate />,
+    },
+    {
+      id: "feature-3",
+      label: "Feature 3",
+      // content: <FeatureTemplateThree />,
+      content: <FeatureTemplate />,
+    },
+  ];
+
+  // state
+  const [feature, setFeature] = useState("feature-1");
+
   return (
-    <div>
-      <p>example</p>
+    <div className="flex flex-col gap-2">
+      {/* toggles */}
+      <div className="@container flex justify-end">
+        <div className="inline-flex h-9 w-fit items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground">
+          {featureFilters.map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setFeature(f.id)}
+              className={cn(
+                "inline-flex h-full w-full items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-xs font-medium capitalize ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 @[500px]:text-sm",
+                "hover:text-primary",
+                f.id === feature && "bg-background text-foreground shadow"
+              )}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* content */}
+      {featureFilters.find((f) => f.id === feature)?.content}
     </div>
   );
 };
