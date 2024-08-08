@@ -15,7 +15,7 @@ export const Grid = ({
     <ul
       className={cn(
         "grid h-full grid-cols-1 gap-x-4 xs:grid-cols-2 sm:grid-cols-4",
-        className,
+        className
       )}
     >
       {children}

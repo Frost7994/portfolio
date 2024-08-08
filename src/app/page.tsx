@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 // components
 import { Hero } from "@/components/sections/hero";
-// import { Portfolio } from "@/components/sections/portfolio";
+import { Showcase } from "@/components/sections/showcase";
 
 // metadata
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className="flex flex-col gap-8">
       <Hero />
-      {/* <Portfolio /> */}
+      <Showcase />
     </div>
   );
 };

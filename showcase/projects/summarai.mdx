@@ -1,0 +1,239 @@
+---
+title: "Summarai"
+date: Oct 2022
+description: "An RSS feed summarizer using AI to send weekly digestables with the important stuff."
+author: Tommy Byrne
+tag: "Deploying Your Project"
+---
+
+# Overview
+
+This was a project I worked on with a client recently which utilises **Node** and **Express** over my usual tech stack of **NextJS** so I've included it to show my diversity when it comes to my skillset and problem solving.
+
+## Brief
+
+The client wanted a deployed server that would run a command run on notice (cron) job every week. This function would check RSS feeds the client was subsribed to in the database and check if there was any new published content within the last week. If there was, it was to be summarised using a large language model (LLM), key points extracted from the piece and sent to the user via email as a weekly digestible. As an addon they wanted the functionality that if they came across an interesting blog that they could send the link to the backend for it to be summarised and included in the coming weeks digestible.
+
+## The Stack
+
+The client in this case was very flexible when it came to what stack and technologies I used. Their only requirement was for it to be a **NodeJS** and **Express** server. Supplementing this setup I included the following technologies:
+
+- NodeJS for the environment.
+- Express for the server.
+- Node-cron for scheduling the function.
+- RSS-parser to parse the supplied feed.
+- Anthropic (specifically the claude model) to utilise AI in summarising the content.
+- Supabase as the backend database.
+- Prisma for the database layer.
+- Beefree to create the HTML template.
+- Resend to send the client their weekly digestible.
+- Northflank as the hosting platform for the server.
+
+## Getting Started
+
+The initial step for this project was to set up a basic express server that was type safe, which looked sometging like this:
+
+```jsx
+// utils
+import express, { Express } from "express";
+import dotenv from "dotenv";
+
+//* - CONFIG
+
+// server config
+dotenv.config();
+const app: Express = express();
+const PORT: string | number = process.env.PORT || 5000;
+
+//* - SERVER
+
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT: ${PORT}`);
+});
+```
+
+Next I had to flesh out the server so that it would run a cron task every x days like so:
+
+```jsx
+// utils
+import express, { Express } from "express";
+import dotenv from "dotenv";
+import cron from "node-cron";
+
+//* - CONFIG
+
+// server config
+dotenv.config();
+const app: Express = express();
+const PORT: string | number = process.env.PORT || 5000;
+
+//* - CRON
+
+// schedule a cron to run every 10 seconds
+cron.schedule("10 * * * * *", () => console.log("cron job running"));
+
+//* - SERVER
+
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT: ${PORT}`);
+});
+```
+
+The code above runs a cron job every 10 secnds which logs a message. This was purely to test the functionality of running the cron function. The client wanted the email every monday in the morning so I adjusted the code to suit. The first arguement in the cron function is the time to run, from left to right it's seconds, minutes, hours, days, weeks, months so to run every monday at 10:30 it looked like this - **'30 10 \* \* 1'** which is implemented next.
+
+```jsx
+// utils
+import express, { Express } from "express";
+import dotenv from "dotenv";
+import task from "./task";
+import cron from "node-cron";
+
+//* - CONFIG
+
+// server config
+dotenv.config();
+const app: Express = express();
+const PORT: string | number = process.env.PORT || 5000;
+
+//* - CRON
+
+// schedule a cron to run every monday at 10:30am
+cron.schedule("30 10 * * 1", async () => {
+  await task();
+});
+
+//* - SERVER
+
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT: ${PORT}`);
+});
+```
+
+As this was a project for a paying client I can't disclose the code for the **task()** function. I will however go into detail about how the function works and provide snippets where possible.
+
+## Task()
+
+The initial set up of the task function is as follows:
+
+```jsx
+// - fn
+
+const task = async () => {};
+
+export default task;
+```
+
+Then we needed a date that would allow is to filter results to make sure they were only within this week:
+
+```jsx
+// utils
+import { subDays, startOfDay } from "date-fns";
+
+// - date
+
+const oneWeekAgo = subDays(startOfDay(new Date()), 7);
+
+// - fn
+
+const task = async () => {};
+
+export default task;
+```
+
+Next we needed a list of feeds to parse. We could get our links the user was already subscribed to from the database, and then parse each of these, which looked like this:
+
+```jsx
+const links = await db.links.findMany();
+```
+
+and
+
+```jsx
+const feed = await parser.parseURL(url);
+```
+
+The feed would have a list of items that would be filtered by the date like so:
+
+```jsx
+const newFeed = {
+  ...feed,
+  articles: feed.items.map((article) => {
+    // return articles that are within the last week
+    const articleDate = new Date(article.pubDate || article.isoDate || "");
+
+    return articleDate > oneWeekAgo;
+  }),
+};
+```
+
+This now gives us a list of weekly feeds with the content we need, next we need to use an AI model to summarise the content and provide the key points, we do this using Anthropic.
+
+```jsx
+// anthropic config
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+```
+
+and
+
+```jsx
+// anthropic summarizer
+const chat = await anthropic.messages.create({
+  model: "claude-3-5-sonnet-20240620",
+  system: prompt, // this is confidential for the client
+  messages: [
+    {
+      role: "user",
+      content: "Please summarize the following:" + content,
+    },
+  ],
+  max_tokens: 1000,
+});
+```
+
+Now we have a list of feeds, all the details for the content, the main body summarised and key pointed extracted. We have to upsert these to the database so that we can access them and reiterate them at a later date. **Prisma** allows to upsert so that if it exists in the database we just update it, otherwise we create it. It looks like this:
+
+```jsx
+await prisma.feed.upsert({
+  where: {
+    // how to search db to check if record exists - i.e db
+  },
+  update: {
+    // update data - or leave blank to skip the record if it exists already
+  },
+  create: {
+    // data to go here if it doesn't exist in db
+  },
+});
+```
+
+The final step for the project is to send on the summary to the client, using **Resend**, like so:
+
+```jsx
+await resend.emails.send({
+  from: [process.env.EMAIL_FROM as string],
+  to: [process.env.EMAIL_TO as string],
+  subject: "Summarai Weekly Digest",
+  html: template(summaries),
+});
+```
+
+The template function is a HTML template for sending an email, created with [Beefree](https://beefree.io). Putting all these pieces together allows a flow like so:
+
+- set up the base environment
+- add the cron functionality
+- set the cron to the specified time
+- create the task():
+  - create a date to filter with
+  - get links the client is subscribed to from db
+  - parse the links and filter the link.items by the date
+  - summarise with the AI model
+  - upsert the new summaries to the db
+  - send the digestible with resend using the template created
+
+The project was hosted on [Northflank](https://northflank.com/), a self service developer platform I use for most of my hosting needs.
+
+## Outcome
+
+The project was great for me in many aspects as it allowed me to tackle working in a different environment than my usual frontend work. It gave me a better understanding into some of the backend aspects that can be involved in thes type of projects and most importantly it gave me an opportunity to work with prompt engineering.
+
+The majority of time spent on this project was fine tuning the prompt to give the expected results we desired every time the function was called, no matter how dynamic the content provided was. In the current climate with AI and how it's integrating with all aspects of a developers journey and skillset it was great to focus solely on it until both the client and I were happy with the outcome.

@@ -12,6 +12,13 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  theme: {
+    extend: {
+      screens: {
+        xs: "400px",
+      },
+    },
+  },
   plugins: [require("@tailwindcss/container-queries")],
 } satisfies Config;
 

@@ -1,0 +1,375 @@
+---
+title: "Decoder"
+date: Jan 2023
+description: "Looking for inspiration while building my portfolio I stumbled across a beautiful decoding animation on Rauno Freiberg's website which inspired me to build my own."
+author: Tommy Byrne
+tag: "Simple Animating Component"
+stack: [NextJS, TailwindCSS]
+---
+
+# Overview
+
+I was designing my own portfolio and looking for some design inspiration when I came across [Rauno Freiberg's](https://rauno.me/) beautiful website. There were many aspects to his website that I loved but one component I just had to implement, the text decoding effect which you can see at the very top of my website or below when you click **animate**.
+
+<Decoder />
+
+Inspired by this design I had to implement it and it now sits as the tag line when you land on my portfolio home page. However creating it isn't as easy as it looks so I've written this project post to explain the steps I took with code examples for anyone who wishes to implement something similar!
+
+Breaking down the animation, the steps I decided on were as follows:
+
+- Create a keys array.
+- Make sure the animation has a:
+  - delay
+  - duration
+  - speed
+  - stagger
+- Split the supplied word into an array of letters that are iterable.
+
+The first step was easy, I created an array of every letter and symbol.
+
+The second part was to split the word into an array of letters and assign each a span. That looked like this:
+
+```jsx
+const DecodeWord = ({ word }) => {
+  // split word into an array of keys
+  let wordArr = word.split("");
+
+  return (
+    <p>
+      {wordArr.map((letter) => (
+        <span key={letter}>{letter}</span>
+      ))}
+    </p>
+  );
+};
+
+export default DecodeWord;
+```
+
+The next step is to stick with what I know which is setting up animations, for this I'm using **framer-motion**. Below is the initial set up for the component, splitting the word into iterable letters that can be animated independently.
+
+```jsx
+// utils
+import { motion } from "framer-motion";
+
+const DecodeWord = ({ word }) => {
+  // split word into an array of keys
+  let wordArr = word.split("");
+
+  return (
+    <motion.p>
+      {wordArr.map((letter) => (
+        <motion.span key={letter}>{letter}</motion.span>
+      ))}
+    </motion.p>
+  );
+};
+
+export default DecodeWord;
+```
+
+After that we need to make the parent element a motion component. This will allow us to animate each span with a stagger so that it reveals one letter after the next from left to right. That looks something like the following:
+
+```jsx
+// ...
+
+const DecodeWord = ({ word }) => {
+  // ...
+
+  // container variant
+  let containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  // item variant
+  let itemVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+
+  return (
+    <motion.p variants={containerVariants} initial="hidden" animate="visible">
+      {wordArr.map((letter) => (
+        <motion.span key={letter} variants={itemVariants}>
+          {letter}
+        </motion.span>
+      ))}
+    </motion.p>
+  );
+};
+
+export default DecodeWord;
+```
+
+Using variants is a cleaner way to add the animation properties to the components as well as in this case allowing animation propagation since the parent will stagger the animation of each child component rendered. By defining 'initial' and 'animate' on the parent we only need to supply the variants to the children for them to animate. Now we need a per letter animation so we should **extract** the letter component.
+
+```jsx
+// ...
+
+const DecodeLetter = ({ letter }) => {
+  // item variant
+  let itemVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+
+  return <motion.span variants={itemVariants}>{letter}</motion.span>;
+};
+
+const DecodeWord = ({ word }) => {
+  // split word into an array of keys
+  let wordArr = word.split("");
+
+  // container variant
+  let containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  return (
+    <motion.p variants={containerVariants} initial="hidden" animate="visible">
+      {wordArr.map((letter) => (
+        <DecodeLetter letter={letter} key={letter} />
+      ))}
+    </motion.p>
+  );
+};
+
+export default DecodeWord;
+```
+
+Up until this point we have tackled the easy problems, next comes the hard part, building the decode animation. In the following code block we've added some state to the **DecodeLetter** component to track the letters. The first array, _filteredLetters_ removes the actual letter from the array of keys so when we iterate over an array we can use keys from this without running the risk of it being the actual letter. _randomLetter_ is the letter the component will display and it is initially set to a random key from the filtered array. Next is to actually change this letter to show some sort of animation.
+
+```jsx
+// state
+import { useState } from "react";
+
+// ...
+
+// data
+import { KEYS } from "@/data";
+
+const DecodeLetter = ({ letter }) => {
+  // state
+  let [filteredLetters, setFilteredLetters] = useState(
+    KEYS.filter((k) => k !== letter),
+  );
+  let [randomLetter, setRandomLetter] = useState(
+    filteredLetters[Math.floor(Math.random() * filteredLetters.length)],
+  );
+
+  // ...
+
+  return <motion.span variants={itemVariants}>{randomLetter}</motion.span>;
+};
+
+const DecodeWord = ({ word }) => {
+  // ...
+};
+
+export default DecodeWord;
+```
+
+Next we add a useEffect that runs every 1/10 of a second and changes the random letter, done at speed this will give that decoding effect. We now have to figure out how to control the speed of the animation and how to stop it.
+
+```jsx
+// ...
+
+const DecodeLetter = ({ letter }) => {
+  // ...
+
+  // effects
+  useEffect(() => {
+    let interval = setInterval(() => {
+      setRandomLetter(
+        filteredLetters[Math.floor(Math.random() * filteredLetters.length)],
+      );
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [filteredLetters]);
+
+  // ...
+};
+
+const DecodeWord = ({ word }) => {
+  // ...
+};
+
+export default DecodeWord;
+```
+
+We then use a new array, _iterableLetters_, to animate the component. This is an array of 20 random keys and then the actual letter at the very end, using shift removes one from the array each time so when it runs the final time the letter that's left is actual letter.
+
+```jsx
+// ...
+
+const DecodeLetter = ({ letter }) => {
+  // ...
+
+  // create an array fo random keys and add the correct letter to the end
+  let iterableLetters = useMemo(
+    () => [
+      ...Array.from({ length: 20 }, () => {
+        return filteredLetters[
+          Math.floor(Math.random() * filteredLetters.length)
+        ];
+      }),
+      letter,
+    ],
+    [filteredLetters, letter],
+  );
+
+  // effects
+  useEffect(() => {
+    let interval = setInterval(() => {
+      if (iterableLetters.length > 0) {
+        setRandomLetter(iterableLetters.shift());
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [iterableLetters]);
+
+  // ...
+};
+
+const DecodeWord = ({ word }) => {
+  // ...
+};
+
+export default DecodeWord;
+```
+
+This is something but not exactly what we want, as far as animations go it doesn't look impressive nor is it what I want. To improve it we need to control the speed, the stagger, the number of keys to iterate and the delay. We will add them next.
+
+```jsx
+// ...
+
+const DecodeLetter = ({ letter }) => {
+  // static
+  let noOfLetters = 20;
+  let delay = 600;
+  let speed = 40;
+  let letterStagger = 1;
+
+  // ...
+
+  // create an array fo random keys and add the correct letter to the end
+  let iterableLetters = useMemo(
+    () => [
+      ...Array.from({ length: noOfLetters }, () => {
+        return filteredLetters[
+          Math.floor(Math.random() * filteredLetters.length)
+        ];
+      }),
+      letter,
+    ],
+    [filteredLetters, letter, noOfLetters],
+  );
+
+  // effects
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      setIsMounted(true);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [delay]);
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      if (!isMounted) return;
+
+      if (iterableLetters.length > 0) {
+        setRandomLetter(iterableLetters.shift());
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [iterableLetters, isMounted, speed]);
+
+  // ...
+};
+
+const DecodeWord = ({ word }) => {
+  // static
+  let delay = 600;
+  let animationStagger = 0.025;
+
+  // ...
+
+  // container ariant
+  let containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: delay / 1000,
+        staggerChildren: animationStagger,
+      },
+    },
+  };
+
+  // ...
+};
+
+export default DecodeWord;
+```
+
+We are so close! This gives us a better iteration effect but every letter decodes at the same time rather than slightly staggered which is sloppy. By moving the static props to the top level and a bit of maths we can complete this animation as follows:
+
+```jsx
+// ...
+
+const DecodeLetter = ({ letter, speed, noOfLetters, delay }) => {
+  // ...
+};
+
+const DecodeWord = ({ word }) => {
+  // static
+  let animationStagger = 0.025;
+  let duration = 450;
+  let delay = 600;
+  let speed = 40;
+  let letterStagger = 1;
+
+  // ...
+
+  return (
+    <motion.p variants={containerVariants} initial="hidden" animate="visible">
+      {wordArr.map((letter, index) => (
+        <DecodeLetter
+          key={letter}
+          letter={letter}
+          delay={delay}
+          speed={speed}
+          noOfLetters={duration / speed + index * letterStagger}
+        />
+      ))}
+    </motion.p>
+  );
+};
+
+export default DecodeWord;
+```
+
+By moving the static props to **DecodeWord** we can do some simple maths to pass the props to **DecodeLetter**. The main addition here is the little bit of maths added to the prop _noOfLetters_. By using index we can add extra letters to each iteration of **DecodeLetter** which allows for a staggered effect. Voila! As of now this is the current version of this animation, I am sure there is a cleaner way of writing this or more performant which I'm working on. Feel free to implement this in your own project or contact me if you have any ideas on improving it.

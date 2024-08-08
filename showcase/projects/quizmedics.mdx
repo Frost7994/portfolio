@@ -1,0 +1,80 @@
+---
+title: "Quizmedics"
+date: Apr 2020
+description: "A full stack application developed during my paramedic internship to help my colleagues and I prepare each week for our Friday MCQs."
+author: Tommy Byrne
+tag: "Full Stack Application"
+---
+
+# Overview
+
+During my paramedic internship we were constantly bombarded with pages and pages of information, all in the form of multiple choice questions, on top of the rest of the course material. At the end of every week there was an exam in relation to all that was covered during the week. It consisted of 100 multiple choice questions, which mimicked the final exam we had to take at the end of the course.
+
+By week 5 we had over 100 loose sheets of questions, some repeating themselves, the whole thing completely impractical. I was quite handy with Google sheets and figured it was a good place to port all this data. It would allow me to access it on my phone rather than consulting the plethora of loose pages in my bag and I could remove duplicates.
+
+At the time I was starting my coding journey, proficient in HTML, CSS and javascript. I had grand ideas but figured I needed some sort of MVP to get started and so Quizmedics version 1.0.0 was born.
+
+## Version 1.0.0 - Google Sheets -> Glide
+
+Initailly I transribed all the questions we had created into rows on Google Sheets. It wasn't a pretty interface but it saved us having to carry mounds of paper with us, we could read our questions on the bus or before bed a lot easier. With over 1500+ questions I knew we needed something better than to be reading from the raw sheet itself. In a rare moment of spare time during my internship I did a bit of research and found that there were services which would turn your Google Sheet into an app like magic! The first and last I stumbled across was [Glide](https://www.glideapps.com).
+
+Glide is a very user friendly no code app builder that gave you the power to turn a google sheet into an app. It used the sheet as a read/write database and provided some simple components and functionality to scaffold an MVP. Initially it was just an interface to read through the questions that was more user friendly. Unfortunately for my internship class that was as far as the project could reach as I had no more time to put into it with the amount of studying involved. It was however still enough to make vast improvements on our results.
+
+<BlockQuote message="Over 300% increase in the pass rate for our class" />
+
+## Version 2.0.0 - Porting to a fullstack application
+
+Once we graduated I had a lot more time to dedicate to my coding skills. Initially I had started by partaking in courses by _Colt Steele_. They mainly focused on HTML, CSS and Javascript. Very quickly following this I fell into the whirlwind of React and was blown away. The ease in which I could write and learn code in this framework excited me as I began to think of all the possible apps I could build and problems I could solve. I continued taking courses to develop my skills in the previously mentioned languages and frameworks, courses that ranged from focusing on the fundementals to building full applications. Teachers such as _Traversy Media_, _Maximilian Schwarzmüller_, _SamSelikoff_, _Kent C. Dodds_ and many more shaped the path I took. I now had the tools to create the next version of Quizmedics.
+
+The main aspects that Quizmedics required were:
+
+- design an appropriate UI in figma.
+- Implement the UI from figma, catering for a good UX experience.
+- Manage user authentication.
+- Ability to take an exam and save results to a database.
+- Persist data per user.
+
+I listed out the initial features I wanted and went about researching the best stack and libraries to use. I had a wide range of experience with some libraries and stack variations and used what I was comfortable with alongside some new beneficial libraries. The stack was:
+
+- NextJS - the framework to write my app in
+- TailwindCSS - the main styling tool for the project
+- NextAuth - the choice for authentication
+- Prisma - the layer between the database and app
+- SWR - the layer that handled UI states
+- Vercel - the hosting platform for the app
+- Northflank - the hosting platform for the database
+
+Using these libraries and frameworks I had the capability and tools to build my first live full stack application. NextJS was my React framework of choice, using the API routes to utilise the full stack experience. TailwindCSS was my CSS solution and made designing the platform so simple and quick. NextAuth was the choice for authentication as it allowed me to store all my data in one place rather than a hosted solution. SWR was the UI layer used to interact with the data from the backend in the frontend, displaying loading and error UIs if required and when the data was fetched, rendered the UI for that too. Prisma allowed me to interact seamlessly with the PostgreSQL database, something of which I had limited experience in before this project. The hosting services I used were Vercel and Northflank. Vercel allows for a one click deployemnt from your repsoitory to a live website so that was a no brainer. Northflank hosted the database and was perfect for what I required.
+
+<BlockQuote message="Quizmedics is currently receiving an overhaul, demonstration purposes of the platform and examples of the UI are currently unavailable." />
+
+Unfortunately because the project UI/UX is receiving an overhaul I can't demonstrate the platform. To compensate, I've included samples of the UI the user is privy to. The main page is a dashboard which shows the user statistics of their progress, pass and fail rate etc. An example of the **Stat Card** is as follows:
+
+<Cards />
+
+Users also have an abundance of charts available on their dashboard to show them pass/fail rate, categories where they struggle the most or how many hints they've used on top of many others. An example of the types of charts used are below:
+
+<DisplayCharts />
+
+The UI above highlighted some of the components users had to see their data. Below, is an interactive mock screen for the quiz page. It is completely interactive to give you an idea of what is available to the user of the actual platform.
+
+<QuizScreen />
+
+## Upcoming Version 3.0.0
+
+Two classes used version three, both of them giving feedback on all aspects of using the platform. What they liked, what they felt was missing etc. After two classes I had very few negative feedbacks other than some small UI issues that were related to the type of browser they were using and were easily fixed. The main thing that cropped up from the feedback were features they would've liked to have had. They wanted:
+
+- A way to mark questions that they struggled with so they could review them later.
+- A simple way to review questions they had gotten incorrect.
+- A breakdown of a users statistics.
+- Some way of managing their preferences, the exam interface offered two hints options, one removed a wrong answer and the other was a 50/50 lifeline that removed two. While it was helpful some of them felt dependent on them as they were easily accessible, which may skew how well they were actually doing. A preference setting on the profile page that allowed them to toggle the hints feature on and off was the most requested feature.
+
+I am currently implementing each feature and dealing with any bugs that have arose in the process.A lot of the feature requests required a big change in the previous schema which had some unwanted side effects. Navigating both what is necessary and what people wanted I'm amalgamating the two to meet in the middle with a perfect solution.
+
+There will be more pages added that will allow the user to mark questions and review them. There will also be a feature where they can flag a question to me the developer where they think the provided answer might be marked wrong and I can review it, like a ticketing system.
+
+A new page that stems from the results page allows them to go through each quiz meticulously and see what they got right, where they went wrong etc.
+
+The user can navigate to a profile page where they can edit their preferences as they wish in relation to the quizzes and what is available to them. They have no access to changing the Official quiz prefences but full control over the Practice quiz feature.
+
+<BlockQuote message="From a mound of paper to a Full Stack Application, Quizmedics taught me so much, learn by doing." />
