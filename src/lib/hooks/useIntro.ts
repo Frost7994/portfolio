@@ -15,7 +15,7 @@ export const useIntro = () => {
     hasTimePassed
       ? storage.setItem("tommybyrne-timestamp", currentTimestamp.toString())
       : storage.setItem("tommybyrne-timestamp", timestamp.toString());
-  }, []);
+  }, [currentTimestamp, hasTimePassed, storage, timestamp]);
 
   return hasTimePassed;
 };
