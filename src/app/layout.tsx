@@ -1,3 +1,6 @@
+// utils
+import { cn } from '@/lib/utils/cn'
+
 // styling
 import { DM_Sans } from 'next/font/google'
 import '@/styles/globals.css'
@@ -12,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${font.className} antialiased`}>{children}</body>
+      <body className={cn('antialiased', font.className)}>{children}</body>
     </html>
   )
 }
