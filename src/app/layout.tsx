@@ -1,3 +1,7 @@
+// components
+import { Providers } from '@/components/layout/providers'
+import { Toaster } from '@/components/ui/sonner'
+
 // utils
 import { cn } from '@/lib/utils/cn'
 
@@ -14,8 +18,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={cn('antialiased', font.className)}>{children}</body>
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={cn(
+          'grid min-h-screen grid-rows-1 antialiased',
+          font.className
+        )}
+      >
+        <Providers>
+          <main>{children}</main>
+          <Toaster />
+        </Providers>
+      </body>
     </html>
   )
 }
