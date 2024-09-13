@@ -1,0 +1,24 @@
+The structure for the files will be as follows:
+- types
+- constants
+- data
+- state
+- base
+- components
+- sections
+- utils
+- styling
+
+The commit messages are as follows:
+- build
+- chore
+- ci
+- docs
+- feat
+- fix
+- lib
+- perf
+- refactor
+- revert
+- style
+- test
