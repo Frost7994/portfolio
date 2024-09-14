@@ -3,6 +3,7 @@ import { Container } from '@/components/ui/container'
 import { Grid } from '@/components/ui/grid'
 import { VerticalGridLine } from '@/components/ui/gridLine'
 import { Providers } from '@/components/layout/providers'
+import { Navbar } from '@/components/layout/navbar'
 import { Toaster } from '@/components/ui/sonner'
 
 // utils
@@ -70,6 +71,7 @@ export default function RootLayout({
           </Container>
         </div>
         <Providers>
+          <Navbar />
           <main className='relative pb-8 pt-24'>{children}</main>
           <Toaster />
         </Providers>
