@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/section'
 
 // utils
 import { notFound } from 'next/navigation'
+import { getMDXEntries } from '@/lib/mdx'
 
 const acceptedBlogs = ['projects', 'posts']
 
@@ -22,11 +23,14 @@ export async function generateMetadata({
   }
 }
 
-const Blog = ({ params }: { params: { blog: string } }) => {
+const Blog = async ({ params }: { params: { blog: string } }) => {
   if (!acceptedBlogs.includes(params.blog)) {
     return notFound()
   }
   const { blog } = params
+  const blogs = await getMDXEntries({ dir: blog })
+
+  console.log(blogs.length)
 
   return (
     <div>
