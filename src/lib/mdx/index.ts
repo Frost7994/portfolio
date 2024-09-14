@@ -4,12 +4,12 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 
-export type MDXEntry = {
-  metadata: MDXEntryMetadata
+export type MDXPost = {
+  metadata: MDXPostMetadata
   content: string
 }
 
-export type MDXEntryMetadata = {
+export type MDXPostMetadata = {
   title?: string
   description?: string
   author?: string
@@ -26,7 +26,7 @@ export const getMDXPost = async ({
 }: {
   slug: string
   dir: string
-}): Promise<MDXEntry | null> => {
+}): Promise<MDXPost | null> => {
   const rootDirectory = path.join(process.cwd(), 'content', dir)
 
   try {
@@ -44,18 +44,18 @@ export const getMDXPost = async ({
   }
 }
 
-export const getMDXEntries = async ({
+export const getMDXPosts = async ({
   limit,
   dir
 }: {
   limit?: number
   dir: string
-}): Promise<MDXEntryMetadata[]> => {
+}): Promise<MDXPostMetadata[]> => {
   const rootDirectory = path.join(process.cwd(), 'content', dir)
   const files = fs.readdirSync(rootDirectory)
 
   const posts = files
-    .map(file => getMDXEntryMetadata({ filepath: file, dir }))
+    .map(file => getMDXPostMetadata({ filepath: file, dir }))
     .sort((a, b) => {
       if (new Date(a.publishedAt ?? '') < new Date(b.publishedAt ?? '')) {
         return 1
@@ -67,13 +67,13 @@ export const getMDXEntries = async ({
   return limit ? posts.slice(0, limit) : posts
 }
 
-export const getMDXEntryMetadata = ({
+export const getMDXPostMetadata = ({
   filepath,
   dir
 }: {
   filepath: string
   dir: string
-}): MDXEntryMetadata => {
+}): MDXPostMetadata => {
   const rootDirectory = path.join(process.cwd(), 'content', dir)
 
   const slug = filepath.replace(/\.mdx$/, '')

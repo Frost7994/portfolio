@@ -5,7 +5,7 @@ import { Section } from '@/components/ui/section'
 
 // utils
 import { notFound } from 'next/navigation'
-import { getMDXEntries } from '@/lib/mdx'
+import { getMDXPosts } from '@/lib/mdx'
 
 const acceptedBlogs = ['projects', 'posts']
 
@@ -28,7 +28,7 @@ const Blog = async ({ params }: { params: { blog: string } }) => {
     return notFound()
   }
   const { blog } = params
-  const blogs = await getMDXEntries({ dir: blog })
+  const blogs = await getMDXPosts({ dir: blog })
 
   console.log(blogs.length)
 
