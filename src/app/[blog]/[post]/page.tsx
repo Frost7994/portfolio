@@ -11,6 +11,8 @@ import { MDXRelatedPosts } from '@/components/section/mdx/mdxRelatedPosts'
 import { notFound } from 'next/navigation'
 import { getMDXPost, getMDXPosts } from '@/lib/mdx'
 import { cn } from '@/lib/utils/cn'
+import { format } from 'date-fns'
+import { Badge } from '@/components/ui/badge'
 
 type PostProps = {
   params: { blog: string; post: string }
@@ -44,7 +46,7 @@ const Post = async ({ params }: PostProps) => {
   }
 
   const { metadata, content } = blogPost
-  const { author, readingTime, stack, title, tags, description } = metadata
+  const { readingTime, stack, title, tags, description, publishedAt } = metadata
 
   return (
     <div>
@@ -52,7 +54,32 @@ const Post = async ({ params }: PostProps) => {
         <GridLine position='top' />
         <Container>
           <Grid>
-            <div className='px-4'>Post meta</div>
+            <div className='col-span-4 flex flex-col items-center rounded-md border bg-background p-8'>
+              <div className='flex items-center gap-2'>
+                <span className='rounded-md bg-brand/25 px-1 py-0.5 text-xs text-brand'>
+                  {tags?.[0]}
+                </span>
+                <p className='text-xs font-medium text-muted-foreground'>
+                  {format(publishedAt || new Date(), 'dd MMM yyyy')}
+                </p>
+              </div>
+              <h1 className='text-balance text-center text-2xl font-semibold'>
+                {title}
+              </h1>
+              <p className='text-balance text-center text-muted-foreground'>
+                <span className='font-medium text-foreground'>
+                  {readingTime}
+                </span>{' '}
+                - {description}
+              </p>
+              <ul className='mt-2 flex items-center gap-2'>
+                {stack?.map(tag => (
+                  <li key={tag}>
+                    <Badge variant='outline'>{tag}</Badge>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Grid>
         </Container>
       </Section>

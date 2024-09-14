@@ -48,24 +48,32 @@ export const MDXRelatedPosts = () => {
 
   return (
     <div className={cn('embla', 'flex flex-col gap-4')}>
-      <div className={cn('embla__viewport', 'overflow-hidden')} ref={emblaRef}>
-        <div className={cn('embla__container', '-ml-4 flex')}>
-          {[1, 2, 3].map(post => (
-            <div
-              key={post}
-              className={cn(
-                'embla__slide',
-                'min-w-0 shrink-0 grow-0 basis-full pl-4',
-                'basis-2/3'
-              )}
-            >
-              <div className='flex h-64 flex-col justify-center rounded-md border bg-background p-4'>
-                Slide {post}
+      <div className='relative'>
+        <div
+          className={cn('embla__viewport', 'overflow-hidden')}
+          ref={emblaRef}
+        >
+          <div className={cn('embla__container', '-ml-4 flex')}>
+            {[1, 2, 3].map(post => (
+              <div
+                key={post}
+                className={cn(
+                  'embla__slide',
+                  'min-w-0 shrink-0 grow-0 basis-full pl-4',
+                  'basis-2/3'
+                )}
+              >
+                <div className='flex h-64 flex-col justify-center rounded-md border bg-background p-4'>
+                  Slide {post}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        <div className='absolute inset-y-0 left-0 h-full w-8 bg-gradient-to-r from-background to-transparent' />
+        <div className='absolute inset-y-0 right-0 h-full w-8 bg-gradient-to-l from-background to-transparent' />
       </div>
+
       <div
         className={cn('embla__controls', 'flex items-center justify-between')}
       >
