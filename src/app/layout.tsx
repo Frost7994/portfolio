@@ -1,4 +1,7 @@
 // components
+import { Container } from '@/components/ui/container'
+import { Grid } from '@/components/ui/grid'
+import { VerticalGridLine } from '@/components/ui/gridLine'
 import { Providers } from '@/components/layout/providers'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -21,12 +24,53 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'grid min-h-screen grid-rows-1 antialiased',
+          'relative grid min-h-screen grid-rows-1 antialiased',
           font.className
         )}
       >
+        {/* grid animation */}
+        <div className='absolute inset-0 mx-auto'>
+          <Container>
+            <Grid>
+              {Array(4)
+                .fill(' ')
+                .map((_, i) => (
+                  <li key={i} className='flex justify-between'>
+                    <div className='flex gap-4'>
+                      <div className='relative'>
+                        <VerticalGridLine
+                          position={Math.random() > 0.5 ? 'top' : 'bottom'}
+                        />
+                      </div>
+                      <div className='relative'>
+                        <VerticalGridLine
+                          size='sm'
+                          dashed
+                          position={Math.random() > 0.5 ? 'top' : 'bottom'}
+                        />
+                      </div>
+                    </div>
+                    <div className='flex gap-4'>
+                      <div className='relative'>
+                        <VerticalGridLine
+                          size='sm'
+                          dashed
+                          position={Math.random() > 0.5 ? 'top' : 'bottom'}
+                        />
+                      </div>
+                      <div className='relative'>
+                        <VerticalGridLine
+                          position={Math.random() > 0.5 ? 'top' : 'bottom'}
+                        />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+            </Grid>
+          </Container>
+        </div>
         <Providers>
-          <main>{children}</main>
+          <main className='relative pb-8 pt-24'>{children}</main>
           <Toaster />
         </Providers>
       </body>
