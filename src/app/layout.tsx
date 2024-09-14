@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' className='scrollbar-hide' suppressHydrationWarning>
       <body
         className={cn(
           'relative grid min-h-screen grid-rows-1 antialiased',
