@@ -5,6 +5,7 @@ import { Grid } from '@/components/ui/grid'
 import { GridLine } from '@/components/ui/gridLine'
 
 import { MDXContent } from '@/components/section/mdx/mdxContent'
+import { MDXRelatedPosts } from '@/components/section/mdx/mdxRelatedPosts'
 
 // utils
 import { notFound } from 'next/navigation'
@@ -76,8 +77,8 @@ const Post = async ({ params }: PostProps) => {
       <Section className='space-y-4' id='a'>
         <Container>
           <Grid>
-            <div className='px-4'>
-              <p>Related posts</p>
+            <div className='col-span-4 px-4'>
+              <MDXRelatedPosts />
             </div>
           </Grid>
         </Container>
