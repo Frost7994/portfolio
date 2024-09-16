@@ -53,8 +53,8 @@ const Post = async ({ params }: PostProps) => {
       <Section className='space-y-4' id='a'>
         <GridLine position='top' />
         <Container>
-          <Grid>
-            <div className='col-span-4 flex flex-col items-center rounded-md border bg-background p-8'>
+          <Grid className='lg:grid-cols-8'>
+            <div className='col-span-4 flex flex-col items-center rounded-md border bg-background p-8 lg:col-span-6 lg:col-start-2'>
               <div className='flex items-center gap-2'>
                 <span className='rounded-md bg-brand/25 px-1 py-0.5 text-xs text-brand'>
                   {tags?.[0]}
@@ -103,8 +103,8 @@ const Post = async ({ params }: PostProps) => {
 
       <Section className='space-y-4' id='a'>
         <Container>
-          <Grid>
-            <div className='col-span-4 px-4'>
+          <Grid className='lg:grid-cols-8'>
+            <div className='col-span-4 px-4 lg:col-start-3'>
               <MDXRelatedPosts />
             </div>
           </Grid>
